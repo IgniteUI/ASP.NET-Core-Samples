@@ -1,0 +1,45 @@
+﻿@using Infragistics.Web.Mvc
+@model Scheduler_MVC_Wrapper.Models.AppointmentsResources
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+@(Html.Infragistics().Scheduler()
+                .ID("scheduler")
+                .Height("700px")
+                .Width("1200px")
+                .DataSource(Model.Appointments)
+                .Resources(Model.Resources)
+                .AddClientEvent("appointmentCreated", "onCreated")
+                .AddClientEvent("appointmentDeleted", "onDeleted")
+                .AddClientEvent("appointmentEdited", "onEdited")
+                .Render()
+)
+
+
+<script type="text/javascript">
+    function ajaxCall(data, url, type) {
+
+        $.ajax({
+            type: type,
+            url: url,
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+        });
+    }
+    function onCreated(evt, ui) {
+        const appointment = ui.appointment.dataObject();
+        ajaxCall(appointment, "/home/create", "POST");
+    }
+
+    function onDeleted(evt, ui) {
+        ajaxCall(ui.appointmentId, "/home/delete", "DELETE");
+    }
+
+    function onEdited(evt, ui) {
+        ajaxCall(ui.appointment.dataObject(), "/home/update", "PUT");
+    }
+</script>

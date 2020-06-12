@@ -1,0 +1,9 @@
+/*!@license
+* Infragistics.Web.ClientUI Notifier localization resources 20.1.8
+*
+* Copyright (c) 2011-2020 Infragistics Inc.
+*
+* http://www.infragistics.com/
+*
+*/
+(function(factory){if(typeof define==="function"&&define.amd){define(["jquery"],factory)}else{return factory(jQuery)}})(function($){$.ig=$.ig||{};$.ig.locale=$.ig.locale||{};$.ig.locale.bg=$.ig.locale.bg||{};$.ig.Notifier=$.ig.Notifier||{};$.ig.locale.bg.Notifier={successMsg:"\u0423\u0441\u043f\u0435\u0445",errorMsg:"\u0413\u0440\u0435\u0448\u043a\u0430",warningMsg:"\u0412\u043d\u0438\u043c\u0430\u043d\u0438\u0435",infoMsg:"\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f",notSupportedState:"\u041d\u0435\u043f\u043e\u0434\u0434\u044a\u0440\u0436\u0430\u043d\u043e \u0441\u044a\u0441\u0442\u043e\u044f\u043d\u0438\u0435 \u043d\u0430 \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438\u0442\u0435! \u0418\u0437\u043f\u043e\u043b\u0437\u0432\u0430\u0439\u0442\u0435 \u043d\u044f\u043a\u043e\u0435 \u043e\u0442 \u043f\u043e\u0434\u0434\u044a\u0440\u0436\u0430\u043d\u0438\u0442\u0435 \u0441\u044a\u0441\u0442\u043e\u044f\u043d\u0438\u044f 'success', 'info', 'warning', 'error\u2019.",notSupportedMode:"\u041d\u0435\u043f\u043e\u0434\u0434\u044a\u0440\u0436\u0430\u043d \u0440\u0435\u0436\u0438\u043c \u043d\u0430 \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438\u0442\u0435. \u0418\u0437\u043f\u043e\u043b\u0437\u0432\u0430\u0439\u0442\u0435 \u043d\u044f\u043a\u043e\u0439 \u043e\u0442 \u043f\u043e\u0434\u0434\u044a\u0440\u0436\u0430\u043d\u0438\u0442\u0435 \u0440\u0435\u0436\u0438\u043c\u0438 'auto', 'popover', 'inline'."};$.ig.Notifier.locale=$.ig.Notifier.locale||$.ig.locale.bg.Notifier;return $.ig.locale.bg.Notifier});
