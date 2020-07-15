@@ -10,46 +10,14 @@ import { ChartIntegrationDirective, IDeterminedChartTypesArgs } from "../directi
 import { CHART_TYPE } from "../directives/chart-integration/chart-types";
 import { ConditionalFormattingDirective } from "../directives/conditional-formatting/conditional-formatting.directive";
 import { DockSlotComponent } from "./dock-slot/dock-slot.component";
-import { FloatingPanesService } from "./floating-panes.service";
-
-@Pipe({
-    name: "hastDuplicateLayouts"
-})
-export class HastDuplicateLayouts implements PipeTransform {
-    public transform(contentId: string, layout: IgcDockManagerLayout, chartTypes) {
-        const count = this.hasDuplicateContentID(layout, contentId, 0);
-        if (count === 0 && (chartTypes[contentId] || Object.keys(chartTypes).indexOf(contentId) !== -1)) {
-            delete chartTypes[contentId];
-            return false;
-        }
-        return count >= 1;
-
-    }
-
-    private hasDuplicateContentID = (ob, contentId, count) => {
-
-        if (ob["contentId"] && ob["contentId"] === contentId) {
-            count++;
-        }
-
-        for (const i in ob) {
-            if (!ob.hasOwnProperty(i)) { continue; }
-
-            if ((typeof ob[i]) === "object") {
-                count = this.hasDuplicateContentID(ob[i], contentId, count);
-            }
-        }
-        return count;
-    }
-}
+import { FloatingPanesService } from '../services/floating-panes.service';
 
 @Component({
-    selector: "app-data-analysis-dock-manager",
-    templateUrl: "./data-analysis-dock-manager.component.html",
-    styleUrls: ["./data-analysis-dock-manager.component.scss"],
-    providers: [FloatingPanesService]
+    selector: "dock-manager-data-analysis",
+    templateUrl: "./dock-manager-data-analysis.component.html",
+    styleUrls: ["./dock-manager-data-analysis.component.scss"]
 })
-export class DataAnalysisDockManagerComponent implements OnInit, AfterViewInit {
+export class DockManagerDataAnalysisComponent implements OnInit, AfterViewInit {
 
     public data;
 
@@ -146,7 +114,6 @@ export class DataAnalysisDockManagerComponent implements OnInit, AfterViewInit {
 
     public ngOnInit() {
 
-        this.data = new FinancialData().generateData(1000);
         this.gridResizeNotify.pipe(takeUntil(this.destroy$))
         .subscribe(() => {
                 if (this.contextmenu) {
