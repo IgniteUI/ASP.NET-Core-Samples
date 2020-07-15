@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ClientApp",
+            "outputPath": "dist/igniteui-dock-manager-data-analysis",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ClientApp:build"
+            "browserTarget": "igniteui-dock-manager-data-analysis:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ClientApp:build:production"
+              "browserTarget": "igniteui-dock-manager-data-analysis:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ClientApp:build"
+            "browserTarget": "igniteui-dock-manager-data-analysis:build"
           }
         },
         "test": {
@@ -114,15 +114,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ClientApp:serve"
+            "devServerTarget": "igniteui-dock-manager-data-analysis:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ClientApp:serve:production"
+              "devServerTarget": "igniteui-dock-manager-data-analysis:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "ClientApp"
+  "defaultProject": "igniteui-dock-manager-data-analysis"
 }

@@ -4,9 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filterType'
 })
 export class FilterTypePipe implements PipeTransform {
-
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
-  }
-
+  public transform(collection: string[], type: string): string[] {
+      return collection.filter(types => types.indexOf(type) !== -1 && types.indexOf(type, type.length - 1) === -1);
+    }
 }

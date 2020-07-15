@@ -14,9 +14,9 @@
                     </div>
                 </ng-template>
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='Start(Y)' [width]="'100px'" dataType="number" [formatter]="formatCurrency">
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='StartY' header ='Start(Y)' [width]="'100px'" dataType="number" [formatter]="formatCurrency">
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='Start(Y)Diff' dataType="number" [width]="'120px'" >
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='StartYDiff' header ='Start(Y)Diff' dataType="number" [width]="'120px'" >
                 <ng-template igxCell let-cell="cell">
                     <div class="finjs-icons">
                         <span>{{cell.value | number:'1.4-4'}}%</span>
@@ -32,10 +32,10 @@
                     </div>
                 </ng-template>
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='High(Y)' [width]="'100px'" dataType="number" [formatter]="formatCurrency"
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field ='HighY' header='High(Y)' [width]="'100px'" dataType="number" [formatter]="formatCurrency"
                 >
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='High(Y)Diff' [width]="'120px'" dataType="number" [formatter]="formatCurrency"
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field ='HighYDiff' header='High(Y)Diff' [width]="'120px'" dataType="number" [formatter]="formatCurrency"
                 >
                 <ng-template igxCell let-cell="cell">
                     <div class="finjs-icons">
@@ -43,7 +43,7 @@
                     </div>
                 </ng-template>
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='Open Price' dataType="number" [formatter]="formatCurrency" 
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='OpenPrice' dataType="number" [formatter]="formatCurrency" 
                 [width]="'130px'">
                 <ng-template igxCell let-cell="cell">
                     <div class="finjs-icons">
@@ -58,29 +58,29 @@
                     </div>
                 </ng-template>
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='Low(Y)' [width]="'100px'" dataType="number" [formatter]="formatCurrency">
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='LowY' header='Low(Y)' [width]="'100px'" dataType="number" [formatter]="formatCurrency">
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='Low(Y)Diff' dataType="number" [width]="'120px'" >
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='LowYDiff' header='Low(Y)Diff' dataType="number" [width]="'120px'" >
                 <ng-template igxCell let-cell="cell">
                     <div class="finjs-icons">
                         <span>{{cell.value | number:'1.4-4'}}%</span>
                     </div>
                 </ng-template>
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='High(D)' [width]="'100px'" dataType="number" [headerClasses]="'headerAlignSyle'"
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='HighD' header='High(D)' [width]="'100px'" dataType="number" [headerClasses]="'headerAlignSyle'"
                  [formatter]="formatCurrency">
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='High(D)Diff' dataType="number" [width]="'120px'" >
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='HighDDiff' header='High(D)Diff' dataType="number" [width]="'120px'" >
                 <ng-template igxCell let-cell="cell">
                     <div class="finjs-icons">
                         <span>{{cell.value | number:'1.4-4'}}%</span>
                     </div>
                 </ng-template>
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='Low(D)' [width]="'100px'" dataType="number" [formatter]="formatCurrency"
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='LowD' header='Low(D)' [width]="'100px'" dataType="number" [formatter]="formatCurrency"
                 >
             </igx-column>
-            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='Low(D)Diff' dataType="number" [width]="'120px'" >
+            <igx-column [sortable]="true" [movable]="true" [disablePinning]="true" [disableHiding]="true" field='LowDDiff' header='Low(D)Diff' dataType="number" [width]="'120px'" >
                 <ng-template igxCell let-cell="cell">
                     <div class="finjs-icons">
                         <span>{{cell.value | number:'1.4-4'}}%</span>
@@ -104,7 +104,7 @@
 
     <div slot="chart-types-content" class="chart-types-container">
         <div *ngFor="let chartType of chartTypes">
-            <div *ngIf="$any(allCharts |filterType:chartType).length > 0" class="wrapper">
+            <div *ngIf="$any(allCharts |filterType:chartType)?.length > 0" class="wrapper">
                 <div>{{chartType | titlecase}} Chart</div>
                 <div class="types-section">
                     <div *ngFor="let chart of (allCharts | filterType: chartType); let i=index"
@@ -112,7 +112,7 @@
                         title="{{chart | name}}" 
                         [ngClass]="{'disabled': availableCharts.indexOf(chart) === -1, 'selected': chart | selectedChart: dock.layout: selectedCharts}"
                         style="width: 60px; margin-right: 20px; cursor: pointer; position: relative;">
-                        <img src="assets/images/svg/charts/{{chart}}.svg" />
+                        <img src="assets/images/charts/{{chart}}.svg" />
                         <igx-badge *ngIf="selectedCharts[chart]" icon="check"></igx-badge>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                 <span>CONDITIONAL FORMATTING</span>
                 <div class="clear-action" [ngClass]="{'disableButton': !hasFormatter}">
                     <div class="btn" (click)="clearFormatting()">
-                        <img style="width: 18px; height: 18px;" src="assets/images/svg/conditions/Clear.svg" />
+                        <img style="width: 18px; height: 18px;" src="assets/images/conditions/Clear.svg" />
                     </div>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                 <div *ngFor="let condition of formattersNames" class="action" [ngClass]="{'selected--condition': condition === currentFormatter}">
                     <div class="btn condition" (click)="analyse(condition)">
                         <img style="width: 36px; height: 36px;"
-                            src="assets/images/svg/conditions/{{condition.replace(' ', '')}}.svg" />
+                            src="assets/images/conditions/{{condition.replace(' ', '')}}.svg" />
                         <span class="name">{{condition.replace('10', '10%')}}</span>
                     </div>
                 </div>

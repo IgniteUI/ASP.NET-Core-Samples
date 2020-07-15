@@ -11,6 +11,7 @@ import { CHART_TYPE } from "../directives/chart-integration/chart-types";
 import { ConditionalFormattingDirective } from "../directives/conditional-formatting/conditional-formatting.directive";
 import { DockSlotComponent } from "./dock-slot/dock-slot.component";
 import { FloatingPanesService } from '../services/floating-panes.service';
+import {FinancialDataService} from '../services/financial-data.service';
 
 @Component({
     selector: "dock-manager-data-analysis",
@@ -107,12 +108,18 @@ export class DockManagerDataAnalysisComponent implements OnInit, AfterViewInit {
         floatingPanes: []
     };
 
-    constructor(private cdr: ChangeDetectorRef, private paneService: FloatingPanesService,
-                @Inject(IgxOverlayService) private overlayService: IgxOverlayService) {
-
+    constructor(private cdr: ChangeDetectorRef,
+                private paneService: FloatingPanesService,
+                @Inject(IgxOverlayService) private overlayService: IgxOverlayService,
+                private dataService: FinancialDataService) {
+                this.dataService.getFinancialRecords(1000);
     }
 
     public ngOnInit() {
+
+        this.dataService.financialRecords.subscribe(data => {
+            this.data = data ?? this.dataService.financialRecords.value;
+        });
 
         this.gridResizeNotify.pipe(takeUntil(this.destroy$))
         .subscribe(() => {

@@ -19,7 +19,7 @@ const providers = [
   { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
 ];
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic(providers).bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
 defineCustomElements(window);
