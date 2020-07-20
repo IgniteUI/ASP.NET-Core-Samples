@@ -2,6 +2,7 @@
 
 ### Starting the Application
 
+- Build the DockManager-DataAnalysis project
 - Set the DockManager-DataAnalysis project as Startup project
 - Press `CTRL + F5` to run the project or press `F5` to start run it in debug mode.
 
