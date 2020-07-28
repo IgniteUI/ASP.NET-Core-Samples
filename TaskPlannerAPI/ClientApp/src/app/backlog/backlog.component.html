@@ -1,0 +1,58 @@
+<igx-card class="tp-app__backlog-card">
+    <igx-card-header>
+        <h1 igxCardHeaderTitle>Master Backlog</h1>
+    </igx-card-header>
+    <igx-divider></igx-divider>
+    <igx-card-content>
+        <igx-tabs>
+            <igx-tabs-group label="unassigned">
+                <igx-input-group type="search" class="tp-app__task-search">
+                    <input #taskSearch igxInput placeholder="Search" [(ngModel)]="taskSearchString"/>
+                    <igx-prefix>
+                        <igx-icon>search</igx-icon>
+                    </igx-prefix>
+                    <igx-suffix *ngIf="taskSearch.value.length > 0" (click)="clearSearchInput()">
+                        <igx-icon>clear</igx-icon>
+                    </igx-suffix>
+                </igx-input-group>
+                <div class="tp-app__list-scroll">
+                    <igx-list>
+                        <igx-list-item *ngFor="let task of tasks | igxFilter: filterTasks; let i = index">
+                            <div class="tp-app__backlog-list-template">
+                                <div class="tp-app__backlog-list-template-row" #dragRef igxDrag
+                                    [ghostHost]="outlet.nativeElement"
+                                    [ghostClass]="'tp-app__backlog-dragged-item'"
+                                    (ghostCreate)="onActionTriggered('drag', task)"
+                                    (dragEnd)="onActionTriggered('release', {})">
+                                    <igx-icon class="tp-app__backlog-list-button tp-app__backlog-list-button--drag" igxDragHandle>drag_indicator</igx-icon>
+                                    <div class="tp-app__backlog-list-template-text">
+                                        <h1 [title]="task.issue" igxListLineTitle>
+                                            {{ task.issue }}
+                                        </h1>
+                                        <h2 [class]="task.priority.toLowerCase()" igxListLineSubTitle>
+                                            {{task.priority}}
+                                        </h2>
+                                    </div>
+                                    <button class="tp-app__backlog-list-button tp-app__backlog-list-button--action" igxButton="icon" igxRipple igxRippleCentered="true" draggable="false" (click)="onActionTriggered('edit', task)">
+                                        <igx-icon>edit</igx-icon>
+                                    </button>
+                                    <button class="tp-app__backlog-list-button tp-app__backlog-list-button--action" igxButton="icon" igxRipple igxRippleCentered="true" draggable="false" (click)="deleteItem(task, i)">
+                                        <igx-icon>delete</igx-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </igx-list-item>
+                        <ng-template igxDataLoading></ng-template>
+                        <ng-template igxEmptyList>
+                            No tasks found
+                        </ng-template>
+                    </igx-list>
+                </div>
+            </igx-tabs-group>
+        </igx-tabs>
+    </igx-card-content>
+</igx-card>
+
+<!-- Dialogs overlay  -->
+<div igxOverlayOutlet #outlet="overlay-outlet">
+</div>
