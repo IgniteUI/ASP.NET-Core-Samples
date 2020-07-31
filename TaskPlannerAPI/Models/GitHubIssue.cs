@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TaskPlanner.Models
+namespace TaskPlannerAPI.Models
 {
 	public class GitHubIssue
 	{

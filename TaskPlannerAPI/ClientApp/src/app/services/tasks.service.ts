@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { TASKS_DATA } from './tasksData';
+import { TASKS_DATA, GITHUB_TASKS } from './tasksData';
 import { ITask } from '../interfaces';
 
 // base URL for the API Server
@@ -15,8 +15,8 @@ export class TasksDataService {
   }
 
     public getAllIssues(): any {
-
-      return this._http.get(`${BASE_URL}getAllIssues`);
+      return of(GITHUB_TASKS.map(rec => this.parseDate(rec)));
+      // return this._http.get(`${BASE_URL}getAllIssues`);
         // .pipe(
         //   map(data => data.map(rec => this.parseDates(rec))),
         //   map(data => this.flattenResponseData(data, fields)),
@@ -33,10 +33,8 @@ export class TasksDataService {
     }
 
     private parseDate(obj) {
-        const record = {};
-
-        obj.started_on = obj.started_on ? new Date(obj.started_on) : null;
-        obj.deadline = obj.deadline ? new Date(obj.deadline) : null;
+        obj.createdAt = obj.createdAt ? new Date(obj.createdAt) : null;
+        obj.updatedAt = obj.updatedAt ? new Date(obj.updatedAt) : null;
         return obj;
     }
 }

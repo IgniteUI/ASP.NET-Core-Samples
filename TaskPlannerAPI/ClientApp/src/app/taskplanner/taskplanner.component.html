@@ -9,7 +9,7 @@
             <igx-grid #tasksGrid id="tasksGrid" igxDrop
                 [height]="'100%'"
                 [data]="tasks"
-                [autoGenerate]="true"
+                [autoGenerate]="false"
                 [showToolbar]="true"
                 [primaryKey]="'id'"
                 [rowEditable]="isRowEditingEnabled"
@@ -123,23 +123,31 @@
                     [hidden]="c.hidden">
 
                     <!-- Status Column -->
-                    <ng-template *ngIf="c.field === 'status'" igxCellEditor let-cell="cell" let-value>
-                      <igx-select [placeholder]="value" [(ngModel)]="cell.editValue" [overlaySettings]="overlaySettings">
+                    <ng-template *ngIf="c.field === 'labels'" igxCell let-cell="cell" let-value>
+                      <!-- <igx-select [placeholder]="value" [(ngModel)]="cell.editValue" [overlaySettings]="overlaySettings">
+                        <igx-select-item *ngFor="let s of statuses" [value]="s.value">{{ s.value }}</igx-select-item>
+                      </igx-select> -->
+                      {{ value | statusLabel }}
+                    </ng-template>
+
+                    <!-- Status Column -->
+                    <ng-template *ngIf="c.field === 'labels'" igxCellEditor let-cell="cell" let-value>
+                      <igx-select [placeholder]="value | statusLabel" [(ngModel)]="cell.editValue" [overlaySettings]="overlaySettings">
                         <igx-select-item *ngFor="let s of statuses" [value]="s.value">{{ s.value }}</igx-select-item>
                       </igx-select>
                     </ng-template>
 
                     <!-- owner !== {} TODO -->
-                    <ng-template *ngIf="c.field === 'owner'" igxCell let-cell="cell" let-value>
+                    <ng-template *ngIf="c.field === 'user'" igxCell let-cell="cell" let-value>
                       <div class="tp-app__owner-col">
-                        <igx-avatar class="tp-app__owner-col-avatar" [src]="cell.value.avatar" roundShape="true" size="small"></igx-avatar>
+                        <igx-avatar class="tp-app__owner-col-avatar" [src]="cell.value.avatarUrl" roundShape="true" size="small"></igx-avatar>
                         <span>
-                            <span class="tp-app__owner-col-name">{{ value.name }}</span>
+                            <span class="tp-app__owner-col-name">{{ value.login }}</span>
                         </span>
                       </div>
                     </ng-template>
 
-                    <ng-template *ngIf="c.field === 'owner'" igxCellEditor let-cell="cell" let-value>
+                    <!-- <ng-template *ngIf="c.field === 'owner'" igxCellEditor let-cell="cell" let-value>
                       <igx-select [placeholder]="value.name" [(ngModel)]="cell.editValue" [overlaySettings]="overlaySettings">
                         <igx-select-item *ngFor="let m of teamMembers" [value]="m">
                           <div class="item">
@@ -150,7 +158,7 @@
                           </div>
                         </igx-select-item>
                       </igx-select>
-                    </ng-template>
+                    </ng-template> -->
 
                     <!-- Started On, Deadline Columns -->
                     <ng-template *ngIf="c.field === 'started_on' || c.field === 'deadline'" igxCell let-value>
