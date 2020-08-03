@@ -74,9 +74,7 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
-*.dot[Cc]over
 # dependencies
 node_modules
 wwwroot
 **/wwwroot/lib
-*wwwroot
