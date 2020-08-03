@@ -10,6 +10,8 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+      <RootNamespace>MarketingDashboard</RootNamespace>
+
   </PropertyGroup>
 
   <ItemGroup>
