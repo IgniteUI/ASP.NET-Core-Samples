@@ -12,13 +12,14 @@ import { HeaderComponent } from './header/header.component';
 import { BacklogComponent } from './backlog/backlog.component';
 import { GridWithTransactionsComponent } from './transaction-component/transaction-grid.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StatusLabelPipe } from './pipes/taskplanner.pipes';
+import { StatusLabelPipe, PriorityLabelPipe } from './pipes/taskplanner.pipes';
 
 @NgModule({
   declarations: [
     TaskPlannerComponent,
     HeaderComponent,
     StatusLabelPipe,
+    PriorityLabelPipe,
     BacklogComponent,
     GridWithTransactionsComponent
   ],

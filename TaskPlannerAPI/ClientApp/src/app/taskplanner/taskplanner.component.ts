@@ -192,7 +192,7 @@ export class TaskPlannerComponent implements OnInit, AfterViewInit {
         { field: 'number', header: 'ID', width: '120px', dataType: 'number', formatter: this.formatID, sortable: true },
         { field: 'title', header: 'Issue', width: '380px', dataType: 'string', filterable: true },
         { field: 'milestone', header: 'Milestone', width: '120px', dataType: 'string', resizable: true, groupable: false, editable: true, sortable: true, sortStrategy: this.milestoneSort, hidden: true},
-        { field: 'labels', header: 'Status', width: '130px', dataType: 'string', resizable: true, sortable: true, filterable: true, editable: false, cellClasses: this.statusClasses, sortStrategy: this.progressSort },
+        { field: 'labels', header: 'Status', width: '130px', dataType: 'string', resizable: true, sortable: true, filterable: true, editable: true, cellClasses: this.statusClasses, sortStrategy: this.progressSort },
         { field: 'progress', header: 'Progress', width: '95px', dataType: 'number', resizable: true, sortable: false },
         { field: 'user', header: 'Assignee', width: '180px', dataType: 'string', resizable: true, editable: true, sortable: false, filterable: false },
         { field: 'createdAt', header: 'Created', width: '120px', dataType: 'date', sortable: true, filterable: true, editable: false, hidden: false },
@@ -216,7 +216,7 @@ export class TaskPlannerComponent implements OnInit, AfterViewInit {
                 console.log(err);
             }
         });
-        // this.teamMembers = MEMBERS;
+        this.teamMembers = MEMBERS;
 
         this.transactionsData = this.grid.transactions.getAggregatedChanges(true);
         this.grid.transactions.onStateUpdate.subscribe(() => {

@@ -25,11 +25,11 @@ export class TasksDataService {
     }
 
     public getAssignedTasks(): Observable<ITask[]> {
-        return of(TASKS_DATA.filter(rec => rec.owner.id).map(rec => this.parseDate(rec)));
+        return of(TASKS_DATA.filter(rec => rec.assignee.id).map(rec => this.parseDate(rec)));
     }
 
     public getUnassignedTasks(): Observable<ITask[]> {
-        return of(TASKS_DATA.filter(rec => !rec.owner.id).map(rec => this.parseDate(rec)));
+        return of(TASKS_DATA.filter(rec => !rec.assignee.id).map(rec => this.parseDate(rec)));
     }
 
     private parseDate(obj) {

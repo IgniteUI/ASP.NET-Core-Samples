@@ -36,10 +36,10 @@ export interface ITask {
 export interface ITeamMember {
     id: number;
     avatarUrl: string;
-    htmlUrl: string;
+    htmlUrl?: string;
     team: string;
     login: string;
-    url: string;
+    url?: string;
 }
 
 export interface ILabel {

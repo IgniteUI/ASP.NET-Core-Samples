@@ -31,7 +31,9 @@ export class BacklogComponent implements OnInit  {
     constructor(private dataService: TasksDataService) {}
 
     public ngOnInit() {
-        this.dataService.getUnassignedTasks().subscribe(data => this.tasks = data);
+        this.dataService.getUnassignedTasks().subscribe(data => { 
+            this.tasks = data;
+        });
         this.overlaySettings.outlet = this.outlet;
     }
 
