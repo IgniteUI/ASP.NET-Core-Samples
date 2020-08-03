@@ -1,0 +1,154 @@
+@import "../tp-theme/vars";
+::ng-deep {
+    .tp-app {
+        height: 100%;
+        overflow: hidden;
+
+        // TODO create issue to make the height of the list height:auto
+        igx-list {
+            height: auto !important;
+        }
+
+        &__row-details {
+            width: 100%;
+        }
+
+        &__row-details-inner {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        &__row-details-col-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: rem(8px);
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        &__inner {
+            display: flex;
+            height: 100%;
+            overflow: hidden;
+            padding: $tp-app-padding;
+        }
+
+        &__row-details-checkbox {
+            margin-bottom: rem(8px);
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        &__row-details-title {
+            margin-bottom: rem(16px);
+            line-height: normal;
+            font-size: 14px;
+        }
+
+        &__row-details-col {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            margin-right: rem(32px);
+            padding: rem(16px);
+            border-radius: 8px;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+
+        &__config {
+            height: $config-height;
+            padding: $tp-app-padding;
+        }
+
+        &__config-buttons {
+            display: flex;
+        }
+
+        &__grid-heading {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            font-size: 18px;
+        }
+
+        &__grid {
+            flex: 1;
+        }
+
+        &__dialog-content {
+            padding: 0 rem(24px);
+
+            > * {
+                margin-bottom: rem(16px);
+            }
+        }
+
+        .igx-dialog__window {
+            max-width: 90vw;
+        }
+
+        .igx-dialog__window-actions,
+        &__dialog-buttons-wrapper {
+            padding: rem(8px) rem(24px) rem(24px) rem(24px);
+        }
+
+        &__dialog-buttons-wrapper {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .igx-grid-toolbar__actions {
+            display: none;
+        }
+
+        &__owner-col {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: flex-start;
+            overflow: hidden;
+
+            > span {
+                flex: 1;
+                min-width: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        &__owner-col-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &__owner-col-avatar.igx-avatar--small {
+            width: rem(30px);
+            height: rem(30px);
+            min-width: rem(30px);
+            margin-right: rem(8px);
+        }
+
+        &__row-badges {
+            margin-left: rem(8px);
+
+            .igx-badge__circle-value {
+                padding: 0 rem(16px);
+            }
+        }
+
+        @media only screen and (max-width: 1024px) {
+            .content {
+                padding: 0;
+            }
+        }
+    }
+}
