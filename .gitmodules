@@ -1,3 +1,4 @@
 [submodule "MarketingDashboard/ClientApp"]
 	path = MarketingDashboard/ClientApp
 	url = https://github.com/IgniteUI/igniteui-angular-marketing-dashboard
+	branch = master
