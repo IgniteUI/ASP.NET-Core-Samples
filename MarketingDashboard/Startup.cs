@@ -28,7 +28,10 @@ namespace MarketingDashboard
                configuration.RootPath = "ClientApp/dist";
             });
 
-
+            services.AddMvc(config =>
+            {
+                config.Filters.Add(typeof(WrongDateExceptionHandler));
+            });
 
             services.AddControllers().AddJsonOptions(options => {
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
