@@ -1,0 +1,3 @@
+[submodule "TaskPlannerAPI/ClientApp"]
+	path = TaskPlannerAPI/ClientApp
+	url = https://github.com/IgniteUI/TaskPlanner.git
