@@ -1,9 +1,7 @@
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
-import { TASKS_DATA, GITHUB_TASKS } from './tasksData';
-import { ITask } from '../interfaces';
 
 // base URL for the API Server
 const BASE_URL = 'https://localhost:44327/';
@@ -15,26 +13,49 @@ export class TasksDataService {
   }
 
     public getAllIssues(): any {
-      return of(GITHUB_TASKS.map(rec => this.parseDate(rec)));
-      // return this._http.get(`${BASE_URL}getAllIssues`);
-        // .pipe(
-        //   map(data => data.map(rec => this.parseDates(rec))),
-        //   map(data => this.flattenResponseData(data, fields)),
-        //   catchError(this.handleError)
-        // );
+      let loadDataFromCache = false;
+      const lastUpdate = parseInt(window.localStorage.getItem('lastUpdate'), 10);
+      const now = new Date().getTime();
+
+      // if more than one hour passed since last update, fetch data from source
+      if (lastUpdate && now - lastUpdate <= 3600000) {
+        loadDataFromCache = true;
+      }
+
+      let data$: Observable<any>;
+      if (loadDataFromCache) {
+          data$ = Observable.create(observer => {
+          const data = window.localStorage.getItem('tp_issues_cache');
+          const tasks = JSON.parse(data);
+          observer.next(tasks);
+          observer.complete();
+        });
+      } else {
+        data$ = this._http.get(`${BASE_URL}getAllIssues`);
+      }
+
+      return data$;
     }
 
-    public getAssignedTasks(): Observable<ITask[]> {
-        return of(TASKS_DATA.filter(rec => rec.assignee.id).map(rec => this.parseDate(rec)));
-    }
-
-    public getUnassignedTasks(): Observable<ITask[]> {
-        return of(TASKS_DATA.filter(rec => !rec.assignee.id).map(rec => this.parseDate(rec)));
+    public getAllPrs(): any {
+      // return of(GITHUB_TASKS.filter(task => task.pullRequest !== null));
+      // // return this._http.get(`${BASE_URL}getAllIssues`)
+      //   .pipe(
+      //   //   map(data => data.map(rec => this.parseDates(rec))),
+      //   map(data => {
+      //     (data as any[]).filter(task => (task as any).pullRequest !== null);
+      //   }));
     }
 
     private parseDate(obj) {
         obj.createdAt = obj.createdAt ? new Date(obj.createdAt) : null;
-        obj.updatedAt = obj.updatedAt ? new Date(obj.updatedAt) : null;
         return obj;
+    }
+
+    private parseObj(rec) {
+      const obj = { number: rec.id };
+      Object.assign(rec, obj);
+      this.parseDate(rec);
+      return rec;
     }
 }

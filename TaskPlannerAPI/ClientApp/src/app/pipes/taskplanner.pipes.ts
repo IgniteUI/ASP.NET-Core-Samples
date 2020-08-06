@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ITask } from '../interfaces';
 
 @Pipe({name: 'statusLabel'})
 export class StatusLabelPipe implements PipeTransform {
@@ -15,10 +16,42 @@ export class StatusLabelPipe implements PipeTransform {
 
 @Pipe({name: 'priorityLabel'})
 export class PriorityLabelPipe implements PipeTransform {
-  transform(value: any): string {
-    const label = value.rowData.labels.filter(l => l.name.indexOf('severity:') === 0);
+  transform(value: ITask): string {
+    const label = value.labels.filter(l => l.name.indexOf('severity:') === 0);
     if (label.length) {
         return label[0].name.substring(10);
     }
+  }
+}
+
+@Pipe({name: 'placeholder'})
+export class PlaceholderPipe implements PipeTransform {
+  transform(value: any): string {
+    if (value) {
+        return value;
+    } else {
+     return 'Enter value...';
+    }
+  }
+}
+
+@Pipe({name: 'progress'})
+export class ProgressPipe implements PipeTransform {
+  transform(value: any): string {
+    if (value) {
+        return value;
+    } else {
+     return 'Automatically updated...';
+    }
+  }
+}
+
+@Pipe({name: 'deadline'})
+export class DeadlinePipe implements PipeTransform {
+  transform(value: ITask): Date {
+    const started = new Date(value.createdAt);
+    const deadlineMonth = started.getMonth() + 3;
+    const deadline = new Date(started).setMonth(deadlineMonth);
+    return new Date(deadline);
   }
 }
