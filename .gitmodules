@@ -1,4 +1,6 @@
 [submodule "MarketingDashboard/ClientApp"]
 	path = MarketingDashboard/ClientApp
-	url = https://github.com/IgniteUI/igniteui-angular-marketing-dashboard
-	branch = master
+	url = https://github.com/IgniteUI/igniteui-angular-marketing-dashboard.git
+[submodule "DockManager-DataAnalysis/ClientApp"]
+	path = DockManager-DataAnalysis/ClientApp
+	url = https://github.com/IgniteUI/DockManager-DataAnalysis.git
