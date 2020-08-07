@@ -78,4 +78,3 @@ _[Ss]cripts
 node_modules
 wwwroot
 **/wwwroot/lib
-*wwwroot

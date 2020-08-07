@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Octokit;
-using TaskPlanner.Models;
+using TaskPlannerAPI.Models;
 
-namespace TaskPlanner.Controllers
+namespace TaskPlannerAPI.Controllers
 {
 	[ApiController]
 	[EnableCors("AllowOrigin")]

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace TaskPlanner
+namespace TaskPlannerAPI
 {
 	public class Startup
 	{
@@ -77,7 +77,7 @@ namespace TaskPlanner
 				if (env.IsDevelopment())
 				{
 					spa.UseAngularCliServer(npmScript: "start");
-					spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+					// spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
 				}
 			});
 		}
