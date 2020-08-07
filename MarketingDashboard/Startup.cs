@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DockManager_DataAnalysis
+namespace MarketingDashboard
 {
     public class Startup
     {
@@ -24,17 +25,22 @@ namespace DockManager_DataAnalysis
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+               configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddCors(c =>
+            services.AddMvc(config =>
             {
-                c.AddPolicy(MyAllowSpecificOrigins, options => options.WithOrigins("http://localhost:4200"));
+                config.Filters.Add(typeof(WrongDateExceptionHandler));
             });
 
             services.AddControllers().AddJsonOptions(options => {
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
+            services.AddCors(c =>
+            {
+                c.AddPolicy(MyAllowSpecificOrigins, options => options.WithOrigins("http://localhost:4200"));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +57,8 @@ namespace DockManager_DataAnalysis
                 app.UseHsts();
             }
 
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -58,7 +66,6 @@ namespace DockManager_DataAnalysis
                 app.UseSpaStaticFiles();
             }
 
-            app.UseCors(MyAllowSpecificOrigins);
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -68,18 +75,18 @@ namespace DockManager_DataAnalysis
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
+
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
+               // To learn more about options for serving an Angular SPA from ASP.NET Core,
+               // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "ClientApp";
+               spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                    // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                }
+               if (env.IsDevelopment())
+               {
+                   spa.UseAngularCliServer(npmScript: "start");
+               }
             });
         }
     }
