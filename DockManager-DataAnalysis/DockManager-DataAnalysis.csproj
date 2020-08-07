@@ -35,7 +35,7 @@
     <Exec Condition="Exists('$(SpaRoot)')" WorkingDirectory="$(SpaRoot)" Command="git pull origin master" />
     <Message Condition="!Exists('$(SpaRoot)node_modules')" Importance="high" Text="Custom message: Restoring dependencies using 'npm'. This may take several minutes..." />
     <Exec Condition="!Exists('$(SpaRoot)node_modules')" WorkingDirectory="$(SpaRoot)" Command="npm install" />
-    <Message Condition="!Exists('$(SpaRoot)node_modules')" Importance="high" Text="Custom message: Dependencies are installed" />
+    <Message Condition="Exists('$(SpaRoot)node_modules')" Importance="high" Text="Custom message: Dependencies are installed" />
   </Target>
 
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
