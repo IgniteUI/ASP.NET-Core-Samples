@@ -33,8 +33,9 @@
     <Message Importance="high" Text="Custom message: SpaRoot is $(SpaRoot) and Root is $(SolutionDir)" />
     <Exec Condition="!Exists('$(SpaRoot)')" WorkingDirectory="$(SolutionDir)" Command="git clone -j8 https://github.com/IgniteUI/DockManager-DataAnalysis.git ClientApp "/>
     <Exec Condition="Exists('$(SpaRoot)')" WorkingDirectory="$(SpaRoot)" Command="git pull origin master" />
-    <Message Importance="high" Text="Custom message: Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Message Condition="!Exists('$(SpaRoot)node_modules')" Importance="high" Text="Custom message: Restoring dependencies using 'npm'. This may take several minutes..." />
     <Exec Condition="!Exists('$(SpaRoot)node_modules')" WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Message Condition="!Exists('$(SpaRoot)node_modules')" Importance="high" Text="Custom message: Dependencies are installed" />
   </Target>
 
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
