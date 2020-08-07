@@ -15,6 +15,7 @@ namespace DockManager_DataAnalysis
         }
 
         public IConfiguration Configuration { get; }
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -24,6 +25,11 @@ namespace DockManager_DataAnalysis
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
+            });
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy(MyAllowSpecificOrigins, options => options.WithOrigins("http://localhost:4200"));
             });
 
             services.AddControllers().AddJsonOptions(options => {
@@ -52,6 +58,7 @@ namespace DockManager_DataAnalysis
                 app.UseSpaStaticFiles();
             }
 
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -71,7 +78,7 @@ namespace DockManager_DataAnalysis
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }
