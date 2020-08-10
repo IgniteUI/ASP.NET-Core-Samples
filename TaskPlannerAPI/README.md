@@ -50,5 +50,5 @@ Project Manager Tooling
 Data manipulation
 
 
-### Data Analysis Sample for ASP.NET Core  
-ASP.NET Core web framework provides rich integration with Modern UI frameworks such as Angular, React, Web Components, jQuery etc. The Data Analysis sample applications built using ASP.NET Core, showcases the Angular Data Grid integrated with a Data Chart to provide an interactive and engaging visualization and leverages the Dock Manager Web component to provide a windowing experience in this web-based application. 
+### TaskPlanner Sample for ASP.NET Core  
+ASP.NET Core web framework provides rich integration with Modern UI frameworks such as Angular, React, Web Components, jQuery etc. The TaskPlanner client application provides an effective means for managing projects and related tasks. Thus, it loads data from the REST API enabling the user to start managing - filtering and sorting tasks, editing tasks, adding new tasks. Built using Ignite UI for Angular, it shows nice UX UI perks like ability to Drag and Drop items from and to the List and Data Grid.
