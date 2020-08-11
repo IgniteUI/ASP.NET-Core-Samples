@@ -1,41 +1,42 @@
-# TaskPlanner application
+### TaskPlanner Sample for ASP.NET Core  
+
+The `TaskPlanner` is a RESTful API application, consisting of a server, built on `ASP.NET Core` and a client web application, built on `Angular`. This model allows for easy integration between the server and any modern UI frameworks such as `Angular`, `React`, `Web Components`, `jQuery`, etc.
+
+While the `TaskPlanner` server and client parts are configured to run together, each application has its own purpose and is agnostic to the other part, meaning that they are easily replaceable.
 
 ### Starting the Application
 
-TaskPlannerAPI is created with **ASP.NET Core 3.0+**. It depends on the [TaskPlanner](https://github.com/IgniteUI/TaskPlanner) application as a submodule added to the `ClientApp` dir.
-
-- Press `CTRL + F5` to run the project or press `F5` to start run it in debug mode.
+- Press `CTRL + F5` to run the project or press `F5` to run it in debug mode.
 
  > If you get the "*The Angular CLI process did not start listening for requests within the timeout period of 0 seconds*" message, you will need to run the client app separately. Just open a new command prompt in the `ClientApp` dir and execute `npm run start`.
 
 ### Application Structure
 
-- REST API server. The [`IssuesController`](https://github.com/IgniteUI/ASP.NET-Core-Samples/tree/master/TaskPlannerAPI/Controllers/IssuesController.cs) demonstrates how to use Octokit library to fetch issues/PRs from a GitHub repository.
-- [`TaskPlanner`](https://github.com/IgniteUI/TaskPlanner) client application provides an effective means for managing projects and related tasks. Thus, it loads data from the REST API enabling the user to start managing - filtering and sorting tasks, editing tasks, adding new tasks. Built using Ignite UI for Angular, it shows nice UX UI perks like ability to Drag and Drop items from and to the List and Data Grid.
+- The `TaskPlannerAPI` is a basic Web API created with `ASP.NET Core` 3.0+. It has logic for fetching, manipulating and serving the data in an appropriate format. It also demonstrates how to use [`Octokit`](https://octokitnet.readthedocs.io/en/latest/) library to fetch issues/PRs from a GitHub repository.
 
-In order to use different client application, go ahead and open the .csproj file and edit the execution commands:
+- The [TaskPlanner](https://github.com/IgniteUI/TaskPlanner) client is an Angular web application. It provides an effective means for managing projects and related tasks. Thus, it loads data from the Web API endpoint, enabling the user to start managing - filtering and sorting tasks, editing tasks, adding new tasks. Built using Ignite UI for Angular, it shows nice UX UI perks like ability to Drag and Drop items from and to the List and Data Grid.
+
+The server application refers the client in the `ClientApp` dir by a submodule. This enables the two to run together, while making it easy to change either part. For example, you as a developer may create a client application on React in order to consume the same endpoint.
+
+In order to use different client application, open the .csproj file and edit the URL of repository, where the client application lives:
 ```xml
 <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug'">
-<!-- Ensure Node.js is installed -->
-<Exec Command="node --version" ContinueOnError="true">
-    <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-</Exec>
-<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
-<Message Importance="high" Text="Custom message: SpaRoot is $(SpaRoot) and Root is $(SolutionDir)" />
-<Exec Condition="!Exists('$(SpaRoot)')" WorkingDirectory="$(SolutionDir)" Command="git clone -j8 https://github.com/IgniteUI/TaskPlanner.git ClientApp "/>
-<Exec Condition="Exists('$(SpaRoot)')" WorkingDirectory="$(SpaRoot)" Command="git pull origin master" />
-<Message Importance="high" Text="Custom message: Restoring dependencies using 'npm'. This may take several minutes..." />
-<Exec Condition="!Exists('$(SpaRoot)node_modules')" WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec Condition="!Exists('$(SpaRoot)')" WorkingDirectory="$(SolutionDir)" Command="git clone -j8 https://github.com/IgniteUI/TaskPlanner.git ClientApp "/>
+    <Exec Condition="Exists('$(SpaRoot)')" WorkingDirectory="$(SpaRoot)" Command="git pull origin master" />
+    <Exec Condition="!Exists('$(SpaRoot)node_modules')" WorkingDirectory="$(SpaRoot)" Command="npm install" />
 </Target>
 ```
 
-The first `Exec` command is performed in order to fetch the submodule (the repository where the client app lives) if it is not already fetched
-The second `Exec` command is used to pull the changes if it the remote client app is already fetched
-The third `Exec` command is used to perform `npm install`
+The `Exec` commands are needed to: 
+1) Clone the client app repository
+2) Pull changes
+3) Execute `npm install`
 
 ### Framework(s)
 
-`ASP.NET Core`, `Angular`
+- `Ignite UI for Angular`
+- `Angular`
+- `ASP.NET Core`
 
  
 ### Components Used
@@ -45,10 +46,6 @@ The third `Exec` command is used to perform `npm install`
  
 ### Industry
 
-Task Manager Tooling
-Project Manager Tooling
-Data manipulation
-
-
-### TaskPlanner Sample for ASP.NET Core  
-ASP.NET Core web framework provides rich integration with Modern UI frameworks such as Angular, React, Web Components, jQuery etc. The TaskPlanner client application provides an effective means for managing projects and related tasks. Thus, it loads data from the REST API enabling the user to start managing - filtering and sorting tasks, editing tasks, adding new tasks. Built using Ignite UI for Angular, it shows nice UX UI perks like ability to Drag and Drop items from and to the List and Data Grid.
+- Task Manager Tooling
+- Project Manager Tooling
+- Data manipulation
