@@ -37,7 +37,7 @@ For more information check out the [README.md](https://github.com/IgniteUI/ASP.N
 
 When adding new application
 
-1. Use this template for the application [`README`](https://github.com/IgniteUI/ASP.NET-Core-Samples/wiki/Template-for-application-README-file.) file.
+1. Use [this template](https://github.com/IgniteUI/ASP.NET-Core-Samples/wiki/Template-for-application-README-file.) for the application [`README`](https://github.com/IgniteUI/ASP.NET-Core-Samples/wiki/Template-for-application-README-file.) file.
 2. Update the list with applications above.
 
 
