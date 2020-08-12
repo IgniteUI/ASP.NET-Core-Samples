@@ -30,7 +30,9 @@ namespace TaskPlannerAPI
 			services.AddCors(options =>
 			{
 				options.AddPolicy("AllowOrigin",
-					builder => builder.AllowAnyOrigin()
+					// When TESTING locally, allow the localhost origins
+					// builder => builder.WithOrigins("https://localhost:44327/", "http://localhost:4200")
+					builder => builder.WithOrigins("https://igniteui.github.io/TaskPlanner/")
 					.AllowAnyMethod()
 					.AllowAnyHeader()
 					);
@@ -59,7 +61,6 @@ namespace TaskPlannerAPI
 			}
 
 			app.UseRouting();
-			app.UseCors("AllowOrigin");
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
