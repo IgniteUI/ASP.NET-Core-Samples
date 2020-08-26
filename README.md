@@ -1,4 +1,4 @@
-The repository consists of samples using the [Ignite UI For Javascript](https://www.infragistics.com/products/ignite-ui) library in a context of ASP.NET Core Web Application.
+The repository consists of samples using the [Ignite UI For Javascript](https://www.infragistics.com/products/ignite-ui), Angular, MVC library in a context of ASP.NET Core Web Application.
 
 This repository consists of different ASP.NET Core applications. The idea is to demonstrate examples of real world scenarios, and how easy is the integration between the server and a web application, built using any modern UI framework such as `Angular`, `React`, `Web Components`, `jQuery`, etc.
 
