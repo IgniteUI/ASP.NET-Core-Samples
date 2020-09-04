@@ -1,0 +1,9 @@
+[submodule "TaskPlannerAPI/ClientApp"]
+	path = TaskPlannerAPI/ClientApp
+	url = https://github.com/IgniteUI/TaskPlanner.git
+[submodule "MarketingDashboard/ClientApp"]
+	path = MarketingDashboard/ClientApp
+	url = https://github.com/IgniteUI/igniteui-angular-marketing-dashboard.git
+[submodule "DockManager-DataAnalysis/ClientApp"]
+	path = DockManager-DataAnalysis/ClientApp
+	url = https://github.com/IgniteUI/DockManager-DataAnalysis.git
