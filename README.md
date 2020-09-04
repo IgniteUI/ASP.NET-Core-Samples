@@ -32,10 +32,10 @@ For more information check out the [README.md](https://github.com/IgniteUI/ASP.N
   - The **Angular Marketing Dashboard** application makes use of the [Ignite UI for Angular](https://www.infragistics.com/products/ignite-ui-angular/angular/components/general/getting_started.html) [data chart](https://www.infragistics.com/products/ignite-ui-angular/angular/components/datachart.html), [map](https://www.infragistics.com/products/ignite-ui-angular/angular/components/map_overview.html), [doughnut chart](https://www.infragistics.com/products/ignite-ui-angular/angular/components/doughnutchart.html), [bullet graph](https://www.infragistics.com/products/ignite-ui-angular/angular/components/bulletgraph.html), [date picker](https://www.infragistics.com/products/ignite-ui-angular/angular/components/date_picker.html), [list](https://www.infragistics.com/products/ignite-ui-angular/angular/components/list.html), [dialog](https://www.infragistics.com/products/ignite-ui-angular/angular/components/dialog.html) and [card](https://www.infragistics.com/products/ignite-ui-angular/angular/components/card.html) controls, styled with **Ignite UI for Angular** [theming engine](https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes/index.html) to tackle specific analytical challenges. The dashboard view brings together different data points a marketing expert would want to track like sessions, conversions and conversion costs.
 - [Task Planner API Application](https://github.com/IgniteUI/ASP.NET-Core-Samples/tree/master/TaskPlannerAPI)
   - The sample demonstrates how to use the [Github API](https://octokit.github.io/rest.js/v18) with [Octo Kit](https://octokit.github.io/rest.js/v18) in order to load Ignite UI for Angular Issues and Pull requests into different visual elements like List and Grid. This app can be used to easily track our work and tasks progress.
-- [Ignite UI for jQuery Data Grid Remote Оperatations*](https://github.com/IgniteUI/ASP.NET-Core-Samples/tree/master/DataGrid-Core-RemoteFeatures)
+- [Ignite UI for jQuery Data Grid Remote Оperatations](https://github.com/IgniteUI/ASP.NET-Core-Samples/tree/master/DataGrid-Core-RemoteFeatures)
   - The sample demonstrates how the user could execute and perform remote operatations with Ignite UI for jQuery [data grid](https://www.igniteui.com/help/iggrid-overview) component.
   - The sample makes use of the
-- [Ignite UI for jQuery Data Chart Overview*](https://github.com/IgniteUI/ASP.NET-Core-Samples/tree/master/DataGrid-Core-RemoteFeatures)
+- [Ignite UI for jQuery Data Chart Overview](https://github.com/IgniteUI/ASP.NET-Core-Samples/tree/master/DataGrid-Core-RemoteFeatures)
   - The sample demonstrates how the user could analyse selected data from a database with Ignite UI for jQuery's [data chart](https://www.igniteui.com/help/igdatachart-overview) component.
 
 ### Adding new application
@@ -51,6 +51,3 @@ When adding new application
 - [Use the Angular project template with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-3.1&tabs=visual-studio)
 - [Use the React project template with ASP.NET Core](hhttps://docs.microsoft.com/en-us/aspnet/core/client-side/spa/react?view=aspnetcore-3.1&tabs=visual-studio)
 - [Enable Cross-Origin Requests (CORS) in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-3.1)
-
-### Notes
-*In order the sample to work, first the [Persistence](https://github.com/IgniteUI/ASP.NET-Core-Samples/tree/master/Persistence) project has to be build.
