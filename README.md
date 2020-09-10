@@ -20,6 +20,10 @@ The `Exec` commands are needed to:
 2) Pull changes
 3) Execute `npm install`
 
+### ASP.NET Core Prerequisites 
+- Windows 10, Version 1809 and higer [(more information)](https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=netcore31)
+- .NET Core 2.1, .NET Core 3.1, .NET Core 5 Preview [(more information)](https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=netcore31)
+- Visual Studio 2015, 2017, 2019
 
 ### Applications
 
