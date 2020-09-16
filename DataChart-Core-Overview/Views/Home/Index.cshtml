@@ -1,0 +1,70 @@
+﻿@using Infragistics.Web.Mvc
+@model IList<DataChart>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style type="text/css">
+
+    #columnChart {
+        position: relative;
+        left: calc(50% - 450px);
+    }
+
+    #legend {
+        position: absolute;
+        right: 50px;
+        bottom: 50px;
+    }
+
+        #legend tr span {
+            margin-left: 3px;
+        }
+
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+@{
+    var numberOfColsNeeded = 3;
+    var totalCounter = Model.Count();
+    var itemCounter = 1;
+}
+
+@foreach (var item in Model)
+{
+    if (item.ID == "columnChart")
+    {
+        @:<h3 class="text-center">Column chart </h3>
+        @:<div class="row">
+            @:<div class="col-12">
+                @(Html.Infragistics().DataChart(item.ID, item.Chart))
+            @:</div>
+
+        @:</div>
+        @: <hr />
+        @:<h3 class="text-center mt-4">Other Data Chart types</h3>
+        @:<h5 class="text-center mb-4 text-muted">Number of made orders for the year of 2013</h5>
+    }
+    else
+    {
+        if (itemCounter % numberOfColsNeeded == 1)
+        {
+            @:<div class="row">
+            }
+
+            @:<div class="col-4 mt-1">
+                @(Html.Infragistics().DataChart(item.ID, item.Chart))
+            @:</div>
+
+            if ((itemCounter % numberOfColsNeeded == 0) || ((itemCounter) == totalCounter))
+            {
+            @:</div>
+        }
+        itemCounter++;
+    }
+}

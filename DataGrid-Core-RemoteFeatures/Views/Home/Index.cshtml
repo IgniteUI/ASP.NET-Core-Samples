@@ -1,0 +1,180 @@
+﻿@using Infragistics.Web.Mvc
+@model IQueryable<Entities.Queries.ExtendedOrder>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    @@media (min-width: 1200px) {
+        .container {
+            max-width: 1280px;
+        }
+    }
+
+    .logo {
+        left: 10px;
+        position: absolute;
+        font-family: 'Fredoka One', cursive;
+        font-size: 1.1rem;
+        display: table-cell;
+        vertical-align: middle;
+        color: #2D2D2D;
+    }
+
+    .caption {
+        text-align: center;
+    }
+
+    .numeric-alignment {
+        text-align: right;
+    }
+
+    #message {
+        color: green;
+        display: none;
+    }
+</style>
+
+@(Html.Infragistics()
+        .Grid(Model)
+        .ID("grid")
+        .Caption("<span class='logo'>Northwind Traders</span> <span class='caption'>List of All Orders</span>")
+        .Width("100%")
+        .Height("500px")
+        .PrimaryKey("OrderDetailsID")
+        .AutoGenerateColumns(false)
+        .RowVirtualization(true)
+        .VirtualizationMode(VirtualizationMode.Continuous)
+        .AutoCommit(true)
+        .RenderCheckboxes(true)
+        .Columns(column =>
+        {
+            column.For(x => x.OrderID).Hidden(true);
+            column.For(x => x.ProductID).Hidden(true);
+            column.For(x => x.OrderDetailsID).Hidden(true);
+            column.For(x => x.CategoryID).Hidden(true);
+            column.For(x => x.RequiredDate).HeaderText("Required Date").DataType("date").Format("MM/dd/yyyy").DateDisplayType(DateDisplayType.UTC).Width("160px");
+            column.For(x => x.CategoryName).HeaderText("Category Name").Width("170px");
+            column.For(x => x.ProductName).HeaderText("Product Name").Width("280px");
+            column.For(x => x.ShipCountry).HeaderText("Ship Country").Width("150px");
+            column.For(x => x.Quantity).HeaderText("Quantity").Width("120px").ColumnCssClass("numeric-alignment");
+            column.For(x => x.Discount).HeaderText("Discount").Width("130px").ColumnCssClass("numeric-alignment").Format("percent");
+            column.For(x => x.isProductDiscontinued).HeaderText("Discontinued").Width("160px");
+
+        })
+        .Features(feature =>
+        {
+            feature.Selection();
+            feature.RowSelectors().RowSelectorsColumnWidth("70px");
+            feature.Sorting().Type(OpType.Remote);
+            feature.Filtering().Mode(FilterMode.Advanced).Type(OpType.Remote).FilterDialogWidth("680px").FilterDialogFilterDropDownDefaultWidth("230px").ColumnSettings(cs =>
+            {
+                cs.ColumnSetting().ColumnKey("Discount").NumericEditorOptions(neo => neo.DataMode(NumericEditorDataMode.Double));
+            });
+            feature.Updating().ColumnSettings(cs =>
+            {
+                cs.ColumnSetting().ColumnKey("RequiredDate").EditorType(ColumnEditorType.DatePicker).DefaultValue("01/02/2020");
+                cs.ColumnSetting().ColumnKey("CategoryName").Required(true).EditorType(ColumnEditorType.Combo).ComboEditorOptions(ceo => ceo.DataSource(ViewBag.Categories).TextKey("CategoryName").Mode(ComboMode.DropDown).AddClientEvent("selectionChanged", "onSelectionChanged").EnableClearButton(false));
+                cs.ColumnSetting().ColumnKey("ProductName").Required(true).EditorType(ColumnEditorType.Combo).ComboEditorOptions(co => co.Mode(ComboMode.DropDown).EnableClearButton(false));
+                cs.ColumnSetting().ColumnKey("ShipCountry").DefaultValue("Spain");
+                cs.ColumnSetting().ColumnKey("Quantity").Required(true).DefaultValue(10).NumericEditorOptions(neo => neo.MaxValue(500).MinValue(1));
+                cs.ColumnSetting().ColumnKey("Discount").EditorType(ColumnEditorType.Percent).DefaultValue(0).NumericEditorOptions(neo => neo.MaxDecimals(2).DataMode(NumericEditorDataMode.Double));
+            });
+        })
+        .DataSourceUrl(Url.Action("GetOrders"))
+        .UpdateUrl(Url.Action("UpdateOrders"))
+        .Render()
+    )
+
+<div style="margin-top:10px">
+    <input type="button" id="saveChanges" class="button-style" value="Save Changes" />
+    <span id="message">Changes saved to database!</span>
+</div>
+
+<script>
+
+    var grid, saveButton, updates, loadingIndicator, comboData;
+
+    $(function () {
+        grid = $("#grid");
+        saveButton = $("#saveChanges");
+
+        loadingIndicator = new GridModalLoadingIndicator(grid);
+
+        saveButton.igButton({ labelText: saveButton.val(), disabled: true });
+
+        grid.on("iggridupdatingrowdeleted", function (e, args) {
+            var transactions = grid.igGrid("allTransactions");
+            var newRowIndex = transactions.findIndex(t => t.rowId == args.rowID && t.type == "newrow")
+
+            if (newRowIndex >= 0) {
+                transactions.splice(newRowIndex, 1);
+                var deletedRowIndex = transactions.findIndex(t => t.rowId == args.rowID);
+                transactions.splice(deletedRowIndex, 1);
+            }
+
+            saveButton.igButton("option", "disabled", transactions.length == 0);
+        });
+
+        grid.on("iggridupdatingrowadded", function (e, args) {
+            saveButton.igButton("option", "disabled", false);
+        });
+
+        grid.on("iggridupdatingeditrowended", function (e, args) {
+            if (args.update) {
+                saveButton.igButton("option", "disabled", false);
+            }
+        });
+
+        saveButton.on('click', function (e) {
+            grid.igGrid("saveChanges", function saveSuccess(data) {
+
+                for (var i = 0; i < data.AddedRows.length; i++) {
+                    grid.igGridUpdating("updateRow", data.AddedRows[i].Key, { OrderDetailsID: data.AddedRows[i].Value });
+                }
+
+                loadingIndicator.hide();
+
+                $("#message").toggle();
+                setTimeout(function () {
+                    $("#message").fadeOut();
+                }, 4000)
+            });
+
+            loadingIndicator.show();
+            $(this).igButton("disable");
+
+            return false;
+        });
+
+        grid.on("iggridupdatingeditcellstarting", function (e, args) {
+            if (args.columnKey == "ProductName") {
+                var category = grid.igGridUpdating("editorForKey", "CategoryName").data("igCombo").selectedItems()[0].data.Id;
+                var editor = args.editor.data("igCombo");
+                getProducts(category, editor, true, args.value);
+            }
+        });
+    });
+
+    function onSelectionChanged(e, args) {
+        var category = args.items[0].data.Id;
+        var editor = grid.igGridUpdating("editorForKey", "ProductName").data("igCombo");
+        getProducts(category, editor);
+    };
+
+    function getProducts(categoryID, editor, isInitial, value) {
+        $.ajax({
+            url: "home/get-products-by-category",
+            type: "POST",
+            async: !isInitial,
+            data: { categoryID },
+            success: function (data) {
+                var productIndex = 0;
+                if (isInitial) productIndex = data.findIndex((p) => p.ProductName == value);
+
+                editor.options.dataSource = data;
+                editor.dataBind();
+                editor.index(productIndex);
+            }
+        });
+    }
+</script>
